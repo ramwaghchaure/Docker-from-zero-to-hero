@@ -1,0 +1,56 @@
+1. what is distributed applications?
+A distributed application is a software system that runs on multiple computers or devices. The components of a distributed application work together to achieve a shared goal. 
+
+list of docker commands and their use cases
+
+
+# docker -v                   : to check docker server engine version
+# docker ps                   : To check list of running containers
+# docker ps -a                : To check docker running and not running containers
+# docker images               : To check list images available on docker host
+# docker run redis            : To run container using redis image
+# docker stop <cont_id>       : to stop the container you just created
+# docker rm <cont_id>         : to remove/delete container
+# docker rmi <image>          : to remove/delete image
+# docker pull nginx:1.14      : to pull nginx image
+# docker run -d --name webapp : to run conainer from inage nginx and give name
+nginx:1.14-alpine               'webapp'
+# docker run -p 38282:8080 \  :  Run the instance of kodekloud/simple-webapp with tag blue
+-d vero/simple-weapp:blue        and map port 8080 on the container to 38282 on the host
+# docker build -t mywebapp . \: build a docker image using dockerfile and name it mywebapp
+# docker run -p 8282:8080 \   : Run the instance of the image webapp-color and publish port 
+webapp-color                    8080 on the container to 8282 on the host
+# docker build -t webapp-color: build image using dockerfile
+:lite .
+# docker run -p 8383:8080 -d \:  run the instance of new image webapp-color:lite and       
+  webapp-color:lite              publish port 8080 on the container to 8383 on the host
+# docker run -e MY_VAR=value \: to pass environment variable to container runtime
+my-image
+# docker exec -it <container \: To pass environment variable inside the container
+# docker run --env-file  \    : Toi pass environment variable to container
+.env my-image
+# docker-compose up -d        : running docker compose file.-d runs container in the
+                                background
+# docker-compose ps           :  check running services
+_id> env
+# docker-compose down         : stop and remove docker compose service
+# Docker inspect <cont_id>    : to see full information of container
+# docker exec -it blue-app env: to know env field from within a webapp container
+# docker exec -it mysql-db env : to know env variable in the container
+# docker run -d ubuntu sleep \: Run the instance of ubuntu image to run the sleep 100
+1000                            command at startup
+# docker volume create mydata  : create a docker volume
+# docker run -d --name         : run ubuntu container by attaching volume
+mycontainer -v mydata:/app/data
+ubuntu
+# docker volume ls             : list docker volume
+# docker volume inspect mydata : inspect docker volume
+# docker run --name redis -d   :  create a redis database container called redis, image   
+ redis:alpine                     redis:alpine
+# docker network ls            : to list docker network
+# docker network create \      : To create Docker network
+my_bridge_network  
+
+
+
+

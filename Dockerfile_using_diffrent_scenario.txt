@@ -1,0 +1,99 @@
+Scenario1 : create dockerfile using base python image 'python3.6', this images should have
+flask package install, and copy code in /opt, also expose application in the container
+on port 8080, workdir for application should be /OPT, and as soon as container runs, run the command 'python app.py'
+Sol :
+
+FROM python:3.6
+RUN pip install flask
+COPY . /opt
+EXPOSE 8080
+WORKDIR /opt
+ENTRYPOINT [ "python", "app.py"]
+--------------------------------------------------------------------
+scenario 2 : Build a new smaller docker image by modifying same Dockerfile and name it webapp-color and tag it lite.
+Hint: Find a smaller base image for python:3.6. and make sure the final image is less
+than 150MB
+
+FROM python:3.6-alpine
+RUN pip install flask
+COPY . /opt
+EXPOSE 8080
+WORKDIR /opt
+ENTRYPOINT ["python", "app.py"]
+
+build image using cmd 
+# docker build -t webapp-color:lite .
+
+
+---------------------------------------------------------------------------------
+Scenario 3: define environment variable inside Dockerfile
+
+FROM ubuntu
+ENV APP_ENV=production
+CMD echo "Running in $APP_ENV mode"
+-------------------------------------------------------------------------------
+scenario 4: create docker compose file with following configuration details
+containers to RUN : app and db
+
+
+version: '3'
+service:
+  app:
+    image:
+    ports:
+      =  ""
+    environment:
+      -  
+    depends_on:
+
+  db:
+   image: 
+   environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: 
+    volumes:
+      - db-data:/var/lib/MySQL
+
+volumes:
+  db-data
+
+# docker-compose up -d  --> running docker compose file.-d runs container in the
+background
+# docker-compose ps  -->  check running services
+
+meaning of each filed in docker compose is :
+version: '3' → Specifies the Docker Compose file format version.
+services: → Defines all the containers (app, db).
+app: → The main application container.
+db: → A MySQL database container.
+depends_on: → Ensures db starts before app.
+volumes: → Defines persistent storage (db-data).
+------------------------------------------------------------------------------------
+scenario 5: Run a container name blue-app using image kodeklod/simple-webapp and set the environment variable APP_color to blue. amke the application available on port 38282 on the host. the application listens on port 8080
+
+Solutions: RUN command
+  # docker run -p 38282:8080 --name blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp
+---------------------------------------------------------------------------------------
+Scenario 5: Deploy a MySQL database using the MySQL image and name it mysql-db
+set the database password to use db_pass123. lookup the MySQL image on docker hub and identify the correct environment variable to use setting the root password
+Solution :
+# docker run -d -e MYSQL_ROOT_PASSWORD=db_pass123 --name mysql-db MySQL
+# docker exec -it mysql-db env
+-------------------------------------------------------------------------------------
+Scenario 6: 
+create a simple container called clickcounter with the image kodekloud/click-counter, link it to the redis container that we created in the previous task and then expose it on the host port 8085. The clickcounter app run on port 5000
+Solution:  
+# docker run -d --name=clickcounter --link redis:redis -p 8085:5000 kodekloud/click-counter
+--------------------------------------------------------------------------------
+scenario 6:
+Run a mysql container named mysql-db using the mysql image. Set database password to db_pass123
+Solution :
+docker run -d --name=mysql-db -e MYSQL_DB_PASSWORD=db_pass123 MySQL
+
+
+
+
+
+
+
+

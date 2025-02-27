@@ -1,0 +1,45 @@
+1. What is environment variable in docker
+Ans: In Docker, environment variables are used to pass configuration data to containers
+at runtime without modifying the container image. This makes containers more portable, flexible, and secure by avoiding hardcoded values.
+
+2.  What is docker compose file?
+Ans : A Docker Compose file (docker-compose.yml) is a YAML configuration file that allows you to define, manage, and run multi-container applications using Docker Compose.
+
+Instead of manually running multiple docker run commands, you can define everything (services, networks, volumes, environment variables) in a single file and start your entire stack with one command.
+
+3. Difference Between CMD and ENTRYPOINT in Docker?
+Ans: Specifies the default command that runs when a container starts.
+Can be overridden by passing a command in docker run.
+Only one CMD instruction is allowed per Dockerfile (last one is used).
+
+Defines the main executable for the container.
+Cannot be overridden using docker run arguments (unless --entrypoint is used).
+Ensures the container always runs a specific command.
+
+4. what are the Docker network type?
+Ans: 
+Bridge Network (Default)
+Default network for standalone containers.
+Containers can communicate with each other within the same network but are isolated from the host.
+
+Use Case:
+Suitable for multi-container applications running on the same Docker host.
+
+2️⃣ Host Network
+The container shares the host’s network namespace (no isolation).
+Containers use host machine’s IP and ports directly.
+Use Case:
+When performance is critical (removes Docker’s NAT overhead).
+When applications need to listen on the host’s network interface (e.g., monitoring tools).
+
+3️⃣ None Network (No Networking)
+The container is completely isolated from networking (no internet or external communication).
+Use Case:
+For security-sensitive applications where network access is not required.
+Useful for debugging or restricted environments.
+
+4️⃣ Overlay Network
+Used in Docker Swarm mode to connect containers across multiple Docker hosts.
+Works by creating a distributed network across the cluster.
+
+Multi-host container networking for Docker Swarm or Kubernetes clusters.
