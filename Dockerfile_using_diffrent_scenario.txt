@@ -10,7 +10,7 @@ EXPOSE 8080
 WORKDIR /opt
 ENTRYPOINT [ "python", "app.py"]
 --------------------------------------------------------------------
-scenario 2 : Build a new smaller docker image by modifying same Dockerfile and name it webapp-color and tag it lite.
+Scenario 2 : Build a new smaller docker image by modifying same Dockerfile and name it webapp-color and tag it lite.
 Hint: Find a smaller base image for python:3.6. and make sure the final image is less
 than 150MB
 
@@ -23,19 +23,14 @@ ENTRYPOINT ["python", "app.py"]
 
 build image using cmd 
 # docker build -t webapp-color:lite .
-
-
 ---------------------------------------------------------------------------------
 Scenario 3: define environment variable inside Dockerfile
-
 FROM ubuntu
 ENV APP_ENV=production
 CMD echo "Running in $APP_ENV mode"
 -------------------------------------------------------------------------------
-scenario 4: create docker compose file with following configuration details
+Scenario 4: create docker compose file with following configuration details
 containers to RUN : app and db
-
-
 version: '3'
 service:
   app:
@@ -57,13 +52,12 @@ service:
 volumes:
   db-data
 
-# docker-compose up -d  --> running docker compose file.-d runs container in the
-background
-# docker-compose ps  -->  check running services
+# docker-compose up -d                                     : running docker compose file.-d runs container in the background
+# docker-compose ps                                          : check running services
 
 meaning of each filed in docker compose is :
-version: '3' → Specifies the Docker Compose file format version.
-services: → Defines all the containers (app, db).
+version: '3'  ---> Specifies the Docker Compose file format version.
+services:      → Defines all the containers (app, db).
 app: → The main application container.
 db: → A MySQL database container.
 depends_on: → Ensures db starts before app.
@@ -89,6 +83,30 @@ scenario 6:
 Run a mysql container named mysql-db using the mysql image. Set database password to db_pass123
 Solution :
 docker run -d --name=mysql-db -e MYSQL_DB_PASSWORD=db_pass123 MySQL
+----------------------------------------------------------------------------------
+scenario 7 : run container using nginx image in bridge network
+Solution :
+# docker run -d --name container1 --network my_bridge_network nginx
+------------------------------------------------------------------------------------------------
+Scenario 8:  Let practice deploying a registry server on our own.
+Run a registry server with name equals to my-registry using registry:2 image with host port set to 5000, and restart policy set to always.
+Note: Registry server is exposed on port 5000 in the image. Here we are hosting our own registry using the open source Docker Registry.
+solutions:  Docker run -d -p 5000:5000 --restart-always --name my-registry registry:2
+----------------------------------------------------------------------------------------------------------------------------
+Scenario 9: push 'nginx:latest' and 'httpd:latest' to registry server. don't forgot to pull them first
+to check list of image pushed, use curl -X GET localhost:5000/v2/_catalog
+Solution: # docker pull nginx:latest , 
+then tag image using  # docker image tag nginx:latest localhost:5000/nginx:latest
+and finally push it using # docker push localhost:5000/nginx:latest
+
+# docker pull httpd:latest
+# docker image tag httpd:latest localhost:5000/httpd:latest
+# docker push localhost:5000/httpd:latest
+
+
+
+
+
 
 
 
