@@ -1,0 +1,9 @@
+FROM alpine:latest
+RUN apk update && apk add bash
+RUN mkdir -p /var/lib/postgresql/data
+ENV POSTGRES_DB=mydatabase
+ENV POSTGRES_USER=myuser
+ENV POSTGRES_PASSWORD=mypassword
+EXPOSE 5432
+ENTRYPOINT ["postgres"]
+CMD ["-D", "/var/lib/postgresql/data"]

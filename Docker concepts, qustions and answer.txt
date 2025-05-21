@@ -36,10 +36,24 @@ When applications need to listen on the host’s network interface (e.g., monito
 The container is completely isolated from networking (no internet or external communication).
 Use Case:
 For security-sensitive applications where network access is not required.
-Useful for debugging or restricted environments.
+ Useful for debugging or restricted environments.
 
 4️⃣ Overlay Network
 Used in Docker Swarm mode to connect containers across multiple Docker hosts.
 Works by creating a distributed network across the cluster.
 
 Multi-host container networking for Docker Swarm or Kubernetes clusters.
+
+5.  What is docker registry?
+Ans:  A Docker Registry is a centralized storage and distribution system for Docker images. It allows developers to push, pull, and manage container images in a structured way.
+
+Key Components of a Docker Registry
+Docker Hub – The default public registry provided by Docker.
+Private Registries – Organizations can set up their own registries (e.g., AWS Elastic Container Registry (ECR), Google Container Registry (GCR), Azure Container Registry (ACR)).
+Self-Hosted Registries – You can deploy a private registry using the official Docker Registry image.
+
+6. What is docker hub?
+Ans:  is a hosted registry solution by Docker Inc. Besides public and private repositories, it also provides:
+automated builds, integration with source control solutions like Github and Bitbucket etc.
+
+7. 
